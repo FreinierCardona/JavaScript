@@ -1,0 +1,86 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    min-width: 280px;
+    max-width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e1e2f 0%, #252542 100%);
+    position: sticky;
+    top: 0;
+}
+
+.btn-nav {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    margin-bottom: 8px;
+    background: transparent;
+    color: #aeb2c6;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-nav:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.btn-nav.active {
+    background: #0d6efd;
+    color: white;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+.oculto { display: none; }
+.activo {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card { transition: box-shadow 0.3s ease; }
+.card:hover { box-shadow: 0 .5rem 1rem rgba(0,0,0,.08)!important; }
+#page-content-wrapper { min-height: 100vh; }
+
+/* Mejora para las filas de las tablas (Carrito/Inventario) */
+.table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+/* Efecto de cristal para los mensajes de alerta */
+.alert {
+    border: none;
+    border-left: 5px solid; /* Resalta el tipo de mensaje */
+    backdrop-filter: blur(5px);
+}
+
+/* Estilo para los badges de estado (Aprobado/Reprobado o Disponible/Prestado) */
+.badge-status {
+    padding: 0.5em 1em;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+/* Animación para que los nuevos elementos de lista aparezcan suavemente */
+.list-group-item {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+}

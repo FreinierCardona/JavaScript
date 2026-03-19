@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Práctica POO JavaScript</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <nav class="sidebar text-white shadow-lg" id="sidebar">
+            <div class="sidebar-heading text-center py-4 fs-4 fw-bold">
+                Proyectos POO JS
+            </div>
+            <div class="list-group list-group-flush px-3">
+                <button data-seccion="problema1" class="btn-nav active">1. Cuentas Bancarias</button>
+                <button data-seccion="problema2" class="btn-nav">2. Inventario</button>
+                <button data-seccion="problema3" class="btn-nav">3. Estudiantes</button>
+                <button data-seccion="problema4" class="btn-nav">4. Carrito Compras</button>
+                <button data-seccion="problema5" class="btn-nav">5. Vehículos</button>
+                <button data-seccion="problema6" class="btn-nav">6. Biblioteca</button>
+            </div>
+        </nav>
+
+        <main id="page-content-wrapper" class="flex-grow-1 bg-light">
+            <div class="container-fluid py-5 px-4">
+
+                <section id="problema1" class="ejercicio activo">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <h2 class="card-title fw-bold text-primary mb-4">Sistema de Cuentas Bancarias</h2>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-6">
+                                    <input type="text" id="clienteNombre" class="form-control"
+                                        placeholder="Nombre del Cliente">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="number" id="saldoInicial" class="form-control"
+                                        placeholder="Saldo Inicial">
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="btnCrearCuenta" class="btn btn-primary w-100">Crear</button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row g-3 mb-4 mt-2">
+                                <div class="col-md-6">
+                                    <input type="number" id="montoTransaccion" class="form-control"
+                                        placeholder="Monto ($)">
+                                </div>
+                                <div class="col-md-3">
+                                    <button id="btnIngresar" class="btn btn-success w-100"><i
+                                            class="bi bi-arrow-down-circle"></i> Ingresar</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button id="btnRetirar" class="btn btn-danger w-100"><i
+                                            class="bi bi-arrow-up-circle"></i> Retirar</button>
+                                </div>
+                            </div>
+                            <div class="alert alert-info d-none" id="mensajeCuenta"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="problema2" class="ejercicio oculto">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <h2 class="card-title fw-bold text-primary mb-4">Inventario de Tienda</h2>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-4">
+                                    <input type="text" id="prodNombre" class="form-control"
+                                        placeholder="Nombre Producto">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" id="prodPrecio" class="form-control" placeholder="Precio">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" id="prodCant" class="form-control" placeholder="Cantidad">
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="btnAgregarProd" class="btn btn-primary w-100">Agregar</button>
+                                </div>
+                            </div>
+                            <h4 class="mt-4">Total Inventario: $<span id="totalInventario">0</span></h4>
+                            <ul id="listaInventario" class="list-group mt-3"></ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="problema3" class="ejercicio oculto">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <h2 class="card-title fw-bold text-primary mb-4">Registro de Estudiantes</h2>
+                            <p class="text-muted">Ingresa el nombre del alumno y su nota (0.0 - 5.0) para verificar su
+                                estado académico.</p>
+
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-5">
+                                    <input type="text" id="estudianteNombre" class="form-control form-control-lg"
+                                        placeholder="Nombre del Estudiante">
+                                </div>
+                                <div class="col-md-3">
+                                    <input type="number" id="estudianteNota" class="form-control form-control-lg"
+                                        placeholder="Nota (0-5)" step="0.1" min="0" max="5">
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="btnRegistrarEstudiante"
+                                        class="btn btn-primary btn-lg w-100 rounded-pill">
+                                        <i class="bi bi-person-plus-fill me-2"></i> Registrar Estudiante
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="resultadoEstudiante" class="mt-4 d-none">
+                                <div
+                                    class="p-4 rounded-4 border d-flex justify-content-between align-items-center bg-white shadow-sm">
+                                    <div>
+                                        <h4 id="displayEstudianteNombre" class="mb-1 fw-bold"></h4>
+                                        <p id="displayEstudianteNota" class="mb-0 text-muted"></p>
+                                    </div>
+                                    <div id="badgeEstado" class="fs-5 fw-bold px-4 py-2 rounded-pill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="problema4" class="ejercicio oculto">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <h2 class="card-title fw-bold text-primary mb-4">Carrito de Compras</h2>
+
+                            <div class="row g-3 mb-4 p-4 bg-light rounded-4">
+                                <div class="col-md-5">
+                                    <label class="form-label fw-semibold">Producto</label>
+                                    <input type="text" id="itemNombre" class="form-control"
+                                        placeholder="Ej: Monitor Gamer">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label fw-semibold">Precio ($)</label>
+                                    <input type="number" id="itemPrecio" class="form-control" placeholder="0.00">
+                                </div>
+                                <div class="col-md-3 d-flex align-items-end">
+                                    <button id="btnAgregarAlCarrito" class="btn btn-success w-100">
+                                        <i class="bi bi-cart-plus me-2"></i> Añadir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Precio</th>
+                                            <th class="text-center">Acción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="listaCarrito">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="table-active">
+                                            <td class="fw-bold fs-5">TOTAL</td>
+                                            <td colspan="2" class="fw-bold fs-5 text-primary text-end"
+                                                id="totalCarrito">$0.00</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="problema5" class="ejercicio oculto">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <h2 class="card-title fw-bold text-primary mb-4">Telemetría de Vehículo</h2>
+
+                            <div class="row mb-5 justify-content-center">
+                                <div class="col-md-6 text-center">
+                                    <div class="input-group mb-3 shadow-sm">
+                                        <span class="input-group-text bg-dark text-white">PLACA</span>
+                                        <input type="text" id="vehiculoPlaca"
+                                            class="form-control form-control-lg text-uppercase fw-bold"
+                                            placeholder="ABC-123">
+                                        <button id="btnRegistrarVehiculo" class="btn btn-dark px-4">Configurar</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="panelControlVehiculo" class="row g-4 d-none">
+                                <div class="col-md-4 text-center border-end">
+                                    <div class="py-4">
+                                        <h6 class="text-uppercase text-muted fw-bold">Velocidad Actual</h6>
+                                        <div class="display-1 fw-bold text-primary" id="txtVelocidad">0</div>
+                                        <span class="fs-4 text-muted">km/h</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-8">
+                                    <div class="row g-3 h-100 align-content-center">
+                                        <div class="col-12">
+                                            <label class="form-label fw-bold text-secondary">Ajustar velocidad
+                                                (km)</label>
+                                            <input type="number" id="inputKm" class="form-control form-control-lg mb-3"
+                                                placeholder="Ingresa cantidad de km">
+                                        </div>
+                                        <div class="col-6">
+                                            <button id="btnAcelerar" class="btn btn-outline-success btn-lg w-100 py-3">
+                                                <i class="bi bi-speedometer2 me-2"></i> Acelerar
+                                            </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button id="btnFrenar" class="btn btn-outline-danger btn-lg w-100 py-3">
+                                                <i class="bi bi-stop-circle me-2"></i> Frenar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="problema6" class="ejercicio oculto">
+                    <div class="card shadow-sm border-0 rounded-4">
+                        <div class="card-body p-5">
+                            <h2 class="card-title fw-bold text-primary mb-4">Sistema de Biblioteca</h2>
+                            <div class="row g-3 mb-4">
+                                <div class="col-md-5">
+                                    <input type="text" id="libroTitulo" class="form-control"
+                                        placeholder="Título del Libro">
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" id="libroAutor" class="form-control" placeholder="Autor">
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="btnRegLibro" class="btn btn-primary w-100">Registrar</button>
+                                </div>
+                            </div>
+                            <div id="panelLibro" class="d-none text-center mt-4">
+                                <h4 id="infoLibro" class="text-secondary"></h4>
+                                <span id="estadoLibro" class="badge bg-success fs-5 mb-3">Disponible</span>
+                                <div>
+                                    <button id="btnPrestar" class="btn btn-warning me-2">Prestar Libro</button>
+                                    <button id="btnDevolver" class="btn btn-info">Devolver Libro</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="script.js"></script>
+
+    <script type="module" src="Problema_1_cuentas_bancarias/cuentaBancariaWeb.js"></script>
+    <script type="module" src="Problema_2_inventario/inventarioWeb.js"></script>
+    <script type="module" src="Problema_3_registro_estudiantes/registroEstudianteWeb.js"></script>
+    <script type="module" src="Problema_4_carrito_compras/carritoComprasWeb.js"></script>
+    <script type="module" src="Problema_5_control_vehiculos/vehiculoWeb.js"></script>
+    <script type="module" src="Problema_6_biblioteca/libroWeb.js"></script>
+</body>
+
+</html>

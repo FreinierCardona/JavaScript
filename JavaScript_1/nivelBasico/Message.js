@@ -1,7 +1,7 @@
 // MOSTRAR MENSAJE EN LA PANTALLA
 
 let button = document.getElementById("btnMensaje");
-let message = document.getElementById("resultado");
+let message = document.getElementById("resultadoMensaje");
 let vista = false;
 
 // El boton reacciona a el click
